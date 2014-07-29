@@ -4,7 +4,7 @@ public class Bob
 {
     public string Hey(string input)
     {
-        if (string.IsNullOrWhiteSpace(input))
+        if (Bob.IsSilence(input))
         {
             return "Fine. Be that way!";
         }
@@ -14,7 +14,7 @@ public class Bob
             return "Woah, chill out!";
         }
 
-        if (input.EndsWith("?"))
+        if (Bob.IsQuestion(input))
         {
             return "Sure.";
         }
@@ -22,8 +22,18 @@ public class Bob
         return "Whatever.";
     }
 
+    private static bool IsSilence(string input)
+    {
+        return string.IsNullOrWhiteSpace(input);
+    }
+
     private static bool IsYelling(string input)
     {
         return input.Any(x => char.IsLetter(x)) && input.All(x => !char.IsLetter(x) || char.IsUpper(x));
+    }
+
+    private static bool IsQuestion(string input)
+    {
+        return input.EndsWith("?");
     }
 }
