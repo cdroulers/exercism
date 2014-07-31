@@ -25,7 +25,7 @@ public class Anagram
 		var results = new List<string>();
 
 		foreach (var word in input.Where(x => x.Length == this.Word.Length && 
-			string.Compare(x, this.Word, StringComparison.InvariantCultureIgnoreCase) != 0))
+			!x.Equals(this.Word, StringComparison.InvariantCultureIgnoreCase)))
 		{
 			var index = Anagram.BuildIndex(word);
 			if (this._index.Keys.Count == index.Keys.Count && this._index.All(x => index.ContainsKey(x.Key) && index[x.Key] == x.Value))
