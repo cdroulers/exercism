@@ -75,7 +75,6 @@ public class AnagramTest
         Assert.That(detector.Match(words), Is.EqualTo(results));
     }
 
-    [Ignore]
     [Test]
     public void Anagrams_are_case_insensitive()
     {
