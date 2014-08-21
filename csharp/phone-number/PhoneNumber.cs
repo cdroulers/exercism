@@ -2,12 +2,19 @@ using System.Text.RegularExpressions;
 
 public class PhoneNumber
 {
-	private readonly string numbers;
-	private readonly string areaCode;
-
 	private static readonly Regex NumbersOnlyRegex = new Regex(@"[^0-9]");
 
 	public PhoneNumber(string numbers)
+	{
+		this.Number = PhoneNumber.ParseNumbers(numbers);
+		this.AreaCode = this.Number.Substring(0, 3);
+	}
+
+	public string Number { get; private set; }
+
+	public string AreaCode { get; private set; }
+
+	private static string ParseNumbers(string numbers)
 	{
 		var onlyNumbers = PhoneNumber.NumbersOnlyRegex.Replace(numbers, string.Empty);
 
@@ -20,22 +27,11 @@ public class PhoneNumber
 			onlyNumbers = "0000000000";
 		}
 
-		this.numbers = onlyNumbers;
-		this.areaCode = onlyNumbers.Substring(0, 3);
-	}
-
-	public string Number
-	{
-		get { return this.numbers; }
-	}
-
-	public string AreaCode
-	{
-		get { return this.areaCode; }
+		return onlyNumbers;
 	}
 
 	public override string ToString()
 	{
-		return string.Format("({0}) {1}-{2}", this.areaCode, this.numbers.Substring(3, 3), this.numbers.Substring(6, 4));
+		return string.Format("({0}) {1}-{2}", this.AreaCode, this.Number.Substring(3, 3), this.Number.Substring(6));
 	}
 }
