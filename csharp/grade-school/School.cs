@@ -7,9 +7,9 @@ public class School
 {
 	private readonly IDictionary<int, IList<string>> roster;
 
-	public ReadOnlyDictionary<int, IList<string>> Roster
+	public ReadOnlyDictionary<int, ReadOnlyCollection<string>> Roster
 	{
-		get { return new ReadOnlyDictionary<int, IList<string>>(roster); }
+		get { return new ReadOnlyDictionary<int, ReadOnlyCollection<string>>(roster.ToDictionary(x => x.Key, x => new ReadOnlyCollection<string>(x.Value))); }
 	}
 
 	public School()
