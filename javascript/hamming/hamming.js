@@ -3,10 +3,8 @@ function hamming(one, two) {
         throw new Error('DNA strands must be of equal length.');
     }
 
-    return one.split("").map(function (x, i) {
-        return x === two[i];
-    }).reduce(function (val, x) {
-        return val + (x ? 0 : 1);
+    return one.split("").reduce(function (val, x, i) {
+        return val + (x === two[i] ? 0 : 1);
     }, 0);
 }
 
