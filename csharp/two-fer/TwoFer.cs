@@ -1,7 +1,7 @@
 ﻿public static class TwoFer
 {
-    public static string Speak()
+    public static string Speak(string name = null)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return $"One for {name ?? "you"}, one for me.";
     }
 }
